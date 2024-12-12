@@ -1,0 +1,45 @@
+header {
+    background-color: #7bb9ff; /* Light blue */
+    padding: 1rem;
+    color: white;
+  }
+  
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  h1 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  .nav-list {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-item {
+    margin: 0;
+    padding: 0;
+    border-left: 1px solid #ccc; /* Add border to the left of each item */
+  }
+  
+  .nav-item:first-child {
+    border-left: none; /* Remove border from the first item */
+  }
+  
+  .nav-item a {
+    color: gray;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    display: inline-block;
+  }
+  
+  .nav-item a:hover {
+    background-color: #e0e0e0; /* Slightly darker gray on hover */
+    border-radius: 3px;
+  }
