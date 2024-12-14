@@ -1,15 +1,21 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./Header";
+import Home from "./Home";
+import ToDoList from "./ToDoList";
 import "./App.css";
 
 function App() {
   return (
-    <div>
+    <Router>
       <Header />
       <main>
-        <h1>Welcome to the organizer site</h1>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/todo" element={<ToDoList />} />
+        </Routes>
       </main>
-    </div>
+    </Router>
   );
 }
 
