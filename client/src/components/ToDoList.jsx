@@ -3,14 +3,26 @@ import ToDoForm from "./ToDoForm";
 import ToDoItem from "./ToDoItem";
 
 function ToDoList() {
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(() => {
+    const savedList = localStorage.getItem("todolist");
+    return savedList ? JSON.parse(savedList) : [];
+  });
 
   function addTask(task) {
-    setList((prevItems) => [...prevItems, task]);
+    const newTask = { id: Date.now(), text: task };
+    setList((prevItems) => {
+      const updatedList = [...prevItems, newTask];
+      localStorage.setItem("todolist", JSON.stringify(updatedList));
+      return updatedList;
+    });
   }
 
-  function deleteItem(itemId) {
-    setList((prevItems) => prevItems.filter((item, index) => index != itemId));
+  function deleteItem(id) {
+    setList((prevItems) => {
+      const updatedList = prevItems.filter((item) => item.id != id);
+      localStorage.setItem("todolist", JSON.stringify(updatedList));
+      return updatedList;
+    });
   }
 
   return (
@@ -18,18 +30,14 @@ function ToDoList() {
       <h1>To-Do List</h1>
       <p>Here you can manage your tasks.</p>
       <ToDoForm onAdd={addTask} />
-      <ul>
-        {list.map((item, index) => (
-          <li>
-            <ToDoItem
-              key={index}
-              id={index}
-              item={item}
-              onDelete={deleteItem}
-            />
-          </li>
-        ))}
-      </ul>
+      {list.map((item) => (
+        <ToDoItem
+          key={item.id}
+          id={item.id}
+          item={item.text}
+          onDelete={deleteItem}
+        />
+      ))}
     </div>
   );
 }

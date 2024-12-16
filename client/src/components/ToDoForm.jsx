@@ -9,6 +9,10 @@ function ToDoForm(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
+    if (task.trim() === "") {
+      alert("Task cannot be empty!");
+      return;
+    }
     props.onAdd(task);
     setTask("");
   }
@@ -17,7 +21,13 @@ function ToDoForm(props) {
     <div>
       <h2>Add new:</h2>
       <form onSubmit={handleSubmit}>
-        <input type="text" onChange={changeTask} name="task" value={task} />
+        <input
+          type="text"
+          onChange={changeTask}
+          name="task"
+          placeholder="New Task"
+          value={task}
+        />
         <button type="submit">Add</button>
       </form>
     </div>

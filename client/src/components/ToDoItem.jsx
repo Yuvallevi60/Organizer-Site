@@ -1,13 +1,12 @@
 import React from "react";
+import "./ToDoItem.css";
 
 function ToDoItem(props) {
-  function deleteItem() {
-    props.onDelete(props.id);
-  }
   return (
-    <div>
-      <p>{props.item}</p>
-      <button onClick={deleteItem}>Delete</button>
+    <div className="note">
+      <input type="checkbox" />
+      {props.item}
+      <button onClick={() => props.onDelete(props.id)}>Delete</button>
     </div>
   );
 }
